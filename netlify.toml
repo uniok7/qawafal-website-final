@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = "frontend/build"
+
+# Serve the app for any route that isn't a real file, so /branches, /catalog etc.
+# still work when opened directly or refreshed.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
