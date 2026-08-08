@@ -1,0 +1,6 @@
+name = "qawafal-website-final"
+compatibility_date = "2026-08-08"
+
+[assets]
+directory = "./frontend/build"
+not_found_handling = "single-page-application"
