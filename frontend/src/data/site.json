@@ -105,7 +105,11 @@
     "brand_ar": "أحمد المغربي",
     "category_slug": "perfume",
     "price": 8.800,
-    "images": ["/images/ahmed-dulce-1.jpg"],
+    "images": [
+      "/images/ahmed-dulce-1.jpg",
+      "/images/ahmed-dulce-2.jpg",
+      "/images/ahmed-dulce-3.jpg"
+    ],
     "in_stock": true,
     "branches": ["branch-2"],
     "is_new": true,
@@ -119,7 +123,11 @@
     "brand_ar": "أحمد المغربي",
     "category_slug": "perfume",
     "price": 7.000,
-    "images": ["/images/ahmed-hayana-1.jpg"],
+    "images": [
+      "/images/ahmed-hayana-1.jpg",
+      "/images/ahmed-hayana-2.jpg",
+      "/images/ahmed-hayana-3.jpg"
+    ],
     "in_stock": true,
     "branches": ["branch-2"],
     "is_new": true,
@@ -133,7 +141,11 @@
     "brand_ar": "أحمد المغربي",
     "category_slug": "perfume",
     "price": 5.775,
-    "images": ["/images/ahmed-peachy-peach-1.jpg"],
+    "images": [
+      "/images/ahmed-peachy-peach-1.jpg",
+      "/images/ahmed-peachy-peach-2.jpg",
+      "/images/ahmed-peachy-peach-3.jpg"
+    ],
     "in_stock": true,
     "branches": ["branch-2"],
     "is_new": true,
