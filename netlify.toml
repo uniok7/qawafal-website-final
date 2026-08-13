@@ -1,6 +1,7 @@
 [build]
+   base = "frontend"
   command = "npm run build"
-  publish = "frontend/build"
+  publish = "build"
 
 # Serve the app for any route that isn't a real file, so /branches, /catalog etc.
 # still work when opened directly or refreshed.
