@@ -28,11 +28,21 @@ const notFound = (config) => {
 
 const byOrder = (a, b) => (a.order || 0) - (b.order || 0);
 
+// Brands are derived from the products themselves — adding a product with a new
+// brand makes its filter chip appear automatically. Nothing to maintain separately.
+export function brandKey(name) {
+  return String(name || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "-");
+}
+
 function queryProducts(params = {}) {
-  const { category, is_new, sort = "newest", limit = 100, skip = 0 } = params;
+  const { category, brand, is_new, sort = "newest", limit = 100, skip = 0 } = params;
   let rows = [...(site.products || [])];
 
   if (category) rows = rows.filter((p) => p.category_slug === category);
+  if (brand) rows = rows.filter((p) => brandKey(p.brand) === brandKey(brand));
 
   // axios serialises booleans to the strings "true" / "false"
   if (is_new !== undefined && is_new !== null && is_new !== "") {
@@ -48,6 +58,22 @@ function queryProducts(params = {}) {
   rows.sort(sorters[sort] || sorters.newest);
 
   return rows.slice(Number(skip) || 0, (Number(skip) || 0) + (Number(limit) || 100));
+}
+
+// Distinct brands within a category, ordered by how many products carry each.
+function listBrands(params = {}) {
+  const { category } = params;
+  const rows = (site.products || []).filter(
+    (p) => p.brand && (!category || p.category_slug === category)
+  );
+  const seen = new Map();
+  rows.forEach((p) => {
+    const key = brandKey(p.brand);
+    const found = seen.get(key);
+    if (found) found.count += 1;
+    else seen.set(key, { key, name: p.brand, name_ar: p.brand_ar || p.brand, count: 1 });
+  });
+  return [...seen.values()].sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
 }
 
 function activeOffers() {
@@ -66,6 +92,7 @@ function resolve(path, params) {
   if (path === "/offers") return activeOffers();
   if (path === "/school-bag-items") return [...(site.school_bag_items || [])].sort(byOrder);
   if (path === "/products") return queryProducts(params);
+  if (path === "/brands") return listBrands(params);
 
   const product = path.match(/^\/products\/(.+)$/);
   if (product) return (site.products || []).find((p) => p.id === product[1]) || null;

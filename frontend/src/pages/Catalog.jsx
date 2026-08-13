@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { PackageOpen, ChevronDown } from "lucide-react";
@@ -31,6 +31,30 @@ function CategoryChips({ categories, slug, isAr, t }) {
         <Link key={c.id} to={`/catalog/${c.slug}`} data-testid={`chip-${c.slug}`} className={chipClass(slug === c.slug)}>
           {isAr ? c.name_ar : c.name_en}
         </Link>
+      ))}
+    </div>
+  );
+}
+
+function BrandChips({ brands, brand, onChange, isAr, t }) {
+  // Nothing to filter by until at least two brands exist in this category.
+  if (brands.length < 2) return null;
+  return (
+    <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-6" data-testid="brand-chips">
+      <button type="button" onClick={() => onChange(null)} data-testid="brand-all" className={chipClass(!brand)}>
+        {t.catalog.allBrands}
+      </button>
+      {brands.map((b) => (
+        <button
+          key={b.key}
+          type="button"
+          onClick={() => onChange(b.key)}
+          data-testid={`brand-${b.key}`}
+          className={chipClass(brand === b.key)}
+        >
+          <span dir="ltr">{isAr ? b.name_ar : b.name}</span>
+          <span className="ms-2 text-[11px] opacity-60">{b.count}</span>
+        </button>
       ))}
     </div>
   );
@@ -73,29 +97,50 @@ export default function Catalog() {
   const [sort, setSort] = useState("newest");
   const [limit, setLimit] = useState(PAGE_SIZE);
 
-  useEffect(() => setLimit(PAGE_SIZE), [slug, sort]);
+  // Brand lives in the URL (?brand=gissah) so a filtered view is shareable.
+  const [searchParams, setSearchParams] = useSearchParams();
+  const brand = searchParams.get("brand");
+  const setBrand = (key) => {
+    const next = new URLSearchParams(searchParams);
+    if (key) next.set("brand", key);
+    else next.delete("brand");
+    setSearchParams(next, { replace: true });
+  };
+
+  useEffect(() => setLimit(PAGE_SIZE), [slug, sort, brand]);
 
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => (await axios.get(`${API}/categories`)).data,
   });
 
+  const { data: brands = [] } = useQuery({
+    queryKey: ["brands", slug || "all"],
+    queryFn: async () => (await axios.get(`${API}/brands`, { params: { category: slug || undefined } })).data,
+  });
+
   const { data: products = [], isLoading } = useQuery({
-    queryKey: ["products", slug || "all", sort, limit],
+    queryKey: ["products", slug || "all", brand || "any", sort, limit],
     queryFn: async () =>
-      (await axios.get(`${API}/products`, { params: { category: slug || undefined, sort, limit: limit + 1 } })).data,
+      (
+        await axios.get(`${API}/products`, {
+          params: { category: slug || undefined, brand: brand || undefined, sort, limit: limit + 1 },
+        })
+      ).data,
   });
 
   const hasMore = products.length > limit;
   const visible = products.slice(0, limit);
   const active = categories.find((c) => c.slug === slug);
-  const ref = useReveal(visible.length + (slug || "") + sort);
+  const ref = useReveal(visible.length + (slug || "") + sort + (brand || ""));
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-10 sm:py-14" data-testid="catalog-page">
       <h1 className="text-3xl sm:text-4xl font-bold mb-8">{pageTitle(active, isAr, t)}</h1>
 
       <CategoryChips categories={categories} slug={slug} isAr={isAr} t={t} />
+
+      <BrandChips brands={brands} brand={brand} onChange={setBrand} isAr={isAr} t={t} />
 
       <div className="flex items-center justify-between mb-6">
         <span className="text-sm text-ink-3" data-testid="products-count">

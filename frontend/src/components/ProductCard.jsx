@@ -40,6 +40,15 @@ export function ProductCard({ product, index = 0 }) {
         </div>
       </div>
       <div className="p-4 flex flex-col gap-1.5 flex-1">
+        {product.brand && (
+          <span
+            className="text-[11px] font-semibold uppercase tracking-wide text-ink-3"
+            dir="ltr"
+            data-testid={`product-brand-${product.id}`}
+          >
+            {isAr ? product.brand_ar || product.brand : product.brand}
+          </span>
+        )}
         <h3 className="font-ar font-semibold text-sm sm:text-base leading-snug line-clamp-2 flex-1">
           {name}
         </h3>
