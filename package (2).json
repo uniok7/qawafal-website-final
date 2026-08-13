@@ -1,0 +1,12 @@
+{
+  "name": "qawafal-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Qawafal Al Arabia Shopping Centre \u2014 Ibri, Oman",
+  "scripts": {
+    "build": "cd frontend && npm install --legacy-peer-deps && GENERATE_SOURCEMAP=false npm run build"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

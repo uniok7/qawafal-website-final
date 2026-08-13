@@ -1,0 +1,161 @@
+{
+  "settings": {
+    "id": "site",
+    "phone": "+968 7114 6738",
+    "whatsapp": "96871146738",
+    "opening_time": "8:00 AM",
+    "closing_time": "",
+    "instagram": "",
+    "facebook": "https://www.facebook.com/p/Qawafal-Al-Arabia-Shopping-Centre-Araqi-Ibri-Oman-100064053971892/",
+    "min_order": 5.0,
+    "delivery_area_ar": "توصيل داخل عبري",
+    "delivery_area_en": "Delivery within Ibri",
+    "school_bag_visible": true,
+    "logo_url": "/images/logo.png",
+    "hero_video_url": "",
+    "hero_image_url": "/images/storefront-day.webp"
+  },
+  "categories": [
+    {
+      "id": "cat-perfume",
+      "slug": "perfume",
+      "name_ar": "عطور",
+      "name_en": "Perfume",
+      "order": 1,
+      "image_url": ""
+    },
+    {
+      "id": "cat-women",
+      "slug": "women",
+      "name_ar": "ملابس نسائية",
+      "name_en": "Women's Clothing",
+      "order": 2,
+      "image_url": ""
+    },
+    {
+      "id": "cat-bags",
+      "slug": "bags",
+      "name_ar": "حقائب وشنط سفر",
+      "name_en": "Bags & Luggage",
+      "order": 3,
+      "image_url": ""
+    },
+    {
+      "id": "cat-school",
+      "slug": "school",
+      "name_ar": "حقائب مدرسية وقرطاسية",
+      "name_en": "School Bags & Stationery",
+      "order": 4,
+      "image_url": ""
+    },
+    {
+      "id": "cat-electronics",
+      "slug": "electronics",
+      "name_ar": "إلكترونيات",
+      "name_en": "Electronics",
+      "order": 5,
+      "image_url": ""
+    },
+    {
+      "id": "cat-home",
+      "slug": "home",
+      "name_ar": "أدوات منزلية",
+      "name_en": "Home & Kitchen",
+      "order": 6,
+      "image_url": ""
+    },
+    {
+      "id": "cat-toys",
+      "slug": "toys",
+      "name_ar": "ألعاب",
+      "name_en": "Toys",
+      "order": 7,
+      "image_url": ""
+    }
+  ],
+  "branches": [
+    {
+      "id": "branch-1",
+      "name_ar": "الفرع الأول",
+      "name_en": "Branch 1",
+      "address_ar": "",
+      "address_en": "",
+      "maps_url": "",
+      "phone": "+968 7114 6738",
+      "hours": "8:00 AM",
+      "order": 1
+    },
+    {
+      "id": "branch-2",
+      "name_ar": "الفرع الثاني",
+      "name_en": "Branch 2",
+      "address_ar": "العراقي، عبري، محافظة الظاهرة (7GFV+G73)",
+      "address_en": "7GFV+G73, Al Araqi, Ibri, Al Dhahirah",
+      "maps_url": "https://www.google.com/maps/search/?api=1&query=7GFV%2BG73%20Al%20Araqi%20Ibri%20Oman",
+      "phone": "+968 7114 6738",
+      "hours": "8:00 AM",
+      "order": 2
+    }
+  ],
+  "products": [
+    {
+      "id": "ahmed-hayana-100",
+      "name_ar": "عطر حيانا من أحمد المغربي 100 مل",
+      "name_en": "Ahmed Al Maghribi Hayana Extrait de Parfum 100 ml",
+      "brand": "Ahmed Al Maghribi",
+      "brand_ar": "أحمد المغربي",
+      "category_slug": "perfume",
+      "price": null,
+      "description_ar": "",
+      "images": [
+        "/images/products/ahmed-hayana-1.jpg"
+      ],
+      "in_stock": true,
+      "branches": [
+        "branch-2"
+      ],
+      "is_new": true,
+      "created_at": "2026-08-13T10:00:00Z"
+    },
+    {
+      "id": "ahmed-dulce",
+      "name_ar": "عطر دولتشي من أحمد المغربي",
+      "name_en": "Ahmed Al Maghribi Dulcé",
+      "brand": "Ahmed Al Maghribi",
+      "brand_ar": "أحمد المغربي",
+      "category_slug": "perfume",
+      "price": null,
+      "description_ar": "",
+      "images": [
+        "/images/products/ahmed-dulce-1.jpg"
+      ],
+      "in_stock": true,
+      "branches": [
+        "branch-2"
+      ],
+      "is_new": true,
+      "created_at": "2026-08-13T09:00:00Z"
+    },
+    {
+      "id": "ahmed-peachy-peach",
+      "name_ar": "عطر بيتشي بيتش من أحمد المغربي",
+      "name_en": "Ahmed Al Maghribi Peachy Peach",
+      "brand": "Ahmed Al Maghribi",
+      "brand_ar": "أحمد المغربي",
+      "category_slug": "perfume",
+      "price": null,
+      "description_ar": "",
+      "images": [
+        "/images/products/ahmed-peachy-peach-1.jpg"
+      ],
+      "in_stock": true,
+      "branches": [
+        "branch-2"
+      ],
+      "is_new": true,
+      "created_at": "2026-08-13T08:00:00Z"
+    }
+  ],
+  "offers": [],
+  "school_bag_items": []
+}
