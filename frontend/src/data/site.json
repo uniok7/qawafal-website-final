@@ -97,7 +97,20 @@
       "order": 2
     }
   ],
-  "products": [],
+  "products": [{
+    "id": "gissah-marj-60",
+    "name_ar": "عطر مرج من قصة 60 مل",
+    "name_en": "Gissah Marj EDP 60 ml",
+    "brand": "Gissah",
+    "brand_ar": "قصة",
+    "category_slug": "perfume",
+    "price": 25.000,
+    "images": [],
+    "in_stock": true,
+    "branches": ["branch-2"],
+    "is_new": true,
+    "created_at": "2026-08-12T10:00:00Z"
+  }],
   "offers": [],
   "school_bag_items": []
 }
